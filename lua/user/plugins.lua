@@ -47,21 +47,39 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
+  -- use {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v1.x",
+  --   requires = { "MunifTanjim/nui.nvim" },
+  --   config = function ()
+  --       require("neo-tree").setup()
+  --       vim.cmd([[nnoremap \ :lua require("neo-tree").show()<cr>]])
+  --   end
+  -- }
+  -- use "kyazdani42/nvim-tree.lua"
+  -- use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
+  -- use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
-  use "lukas-reineke/indent-blankline.nvim"
+  -- use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-
+  use {
+    "lazytanuki/nvim-mapper",
+    config = function() require("nvim-mapper").setup{} end,
+    before = "telescope.nvim"
+  }
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
+  use "Pocco81/TrueZen.nvim"
+  use {
+    "mcchrish/zenbones.nvim",
+    requires = "rktjmp/lush.nvim"
+  }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -70,6 +88,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
+  use "github/copilot.vim"
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -79,7 +98,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -92,8 +111,30 @@ return packer.startup(function(use)
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
+  -- use "lewis6991/gitsigns.nvim"
 
+  use {
+      "aserowy/tmux.nvim",
+      config = function()
+          require("tmux").setup({
+              -- overwrite default configuration
+              -- here, e.g. to enable default bindings
+              copy_sync = {
+                  -- enables copy sync and overwrites all register actions to
+                  -- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
+                  enable = true,
+              },
+              navigation = {
+                  -- enables default keybindings (C-hjkl) for normal mode
+                  enable_default_keybindings = true,
+              },
+              resize = {
+                  -- enables default keybindings (A-hjkl) for normal mode
+                  enable_default_keybindings = true,
+              }
+          })
+      end
+  } 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

@@ -87,6 +87,7 @@ telescope.setup {
     -- builtin picker
   },
   extensions = {
+    "mapper",
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
