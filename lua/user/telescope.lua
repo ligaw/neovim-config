@@ -88,6 +88,9 @@ telescope.setup {
   },
   extensions = {
     "mapper",
+    laravel = {
+        project_dir = vim.fn.getcwd()
+    },
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
