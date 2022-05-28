@@ -5,5 +5,5 @@ end
 
 require "user.lsp.lsp-installer"
 require("user.lsp.handlers").setup()
-require("lspconfig")["emmet-ls"].setup({filtypes = {"html", "css", "vue", "blade"}})
-require("lspconfig").tailwindcss.setup({})
+-- require("lspconfig")["emmet-ls"].setup({filtypes = {"html", "css", "vue", "blade"}})
+-- require("lspconfig").tailwindcss.setup({})
